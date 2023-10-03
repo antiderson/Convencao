@@ -15,7 +15,7 @@
 }
 
 .cont {
-    margin: 0 auto;
+    /* margin: 0 auto; */
     width: 85%;
     height: 60%;
 
@@ -24,4 +24,14 @@
     grid-template-rows: repeat(auto-fit, 2fr);
     grid-template-columns: repeat(6, 2fr);
     gap: 8px;
+}
+
+@media (max-width: 1460px) {
+    .container{
+        background-size: 100% 110%; 
+    }
+    .cont {
+        grid-template-columns: repeat(5, 2fr);
+        height: 86%;
+    }
 }

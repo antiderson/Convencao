@@ -8,7 +8,7 @@ const App: React.FC = () => {
         <>
             <div className='container'>
                 <div className='cont'>
-                    <ButtonComponent number={0} />
+                    <ButtonComponent />
                 </div>
             </div>
         </>

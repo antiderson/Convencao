@@ -1,4 +1,6 @@
 import './Button.css';
+import React, { useEffect, useState } from 'react';
+import Modal from '../Modal/Modal';
 
 import foto1 from '../../assets/Foto1.png'
 import foto2 from '../../assets/Foto2.png'
@@ -49,103 +51,211 @@ import image21 from '../../assets/21.png'
 import image22 from '../../assets/22.png'
 import image23 from '../../assets/23.png'
 import image24 from '../../assets/24.png'
-import React, { useState } from 'react';
-import Modal from '../Modal/Modal';
 
 interface ButtonProps {
-    number: number;
+    // number: number;
+    // thumbnail: string;
 }
-  
+
 const ButtonComponent: React.FC<ButtonProps> = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
+    const [selectedImage, setSelectedImage] = useState<string | null>(
+        localStorage.getItem('selectedImage') || null
+    );
+    const [thumbnail, setThumbnail] = useState<string | null>(
+        localStorage.getItem('thumbnail') || null
+    );
 
     const handleButtonClick = (image: string) => {
-        // console.log(image)
         setSelectedImage(image);
         setIsModalOpen(true);
+
+        setThumbnail(image);
+        localStorage.setItem('thumbnail', image);
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
-        setSelectedImage(null);
     };
+
+    useEffect(() => {
+        return () => {
+            localStorage.removeItem('selectedImage');
+            localStorage.removeItem('thumbnail');
+        }
+    }, []);
 
     return (
         <>
             <Modal isOpen={isModalOpen} onClose={closeModal} image={selectedImage} />
             <button className="button" onClick={() => handleButtonClick(foto1)}>
-                <img src={image1}></img>
+                {thumbnail === foto1 ? (
+                    <img src={foto1} className='thumbnail-selected' />
+                ) : (
+                    <img src={image1} className='thumbnail' />
+                )}
+                {/* <img src={image1} /> */}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto2)}>
-                <img src={image2}></img>
+                {thumbnail === foto2 ? (
+                    <img src={foto2} className='thumbnail-selected' alt="thumb2"></img>
+                ) : (
+                    <img src={image2} className='thumbnail'></img>
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto3)}>
-                <img src={image3}></img>
+                {selectedImage === foto3 ? (
+                    <img src={foto3} className='thumbnail-selected' />
+                ) : (
+                    <img src={image3} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto4)}>
-                <img src={image4}></img>
+                {selectedImage === foto4 ? (
+                    <img src={foto4} className='thumbnail-selected' />
+                ) : (
+                    <img src={image4} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto5)}>
-                <img src={image5}></img>
+                {selectedImage === foto5 ? (
+                    <img src={foto5} className='thumbnail-selected' />
+                ) : (
+                    <img src={image5} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto6)}>
-                <img src={image6}></img>
+                {selectedImage === foto6 ? (
+                    <img src={foto6} className='thumbnail-selected' />
+                ) : (
+                    <img src={image6} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto7)}>
-                <img src={image7}></img>
+                {selectedImage === foto7 ? (
+                    <img src={foto7} className='thumbnail-selected' />
+                ) : (
+                    <img src={image7} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto8)}>
-                <img src={image8}></img>
+                {selectedImage === foto8 ? (
+                    <img src={foto8} className='thumbnail-selected' />
+                ) : (
+                    <img src={image8} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto9)}>
-                <img src={image9}></img>
+                {selectedImage === foto9 ? (
+                    <img src={foto9} className='thumbnail-selected' />
+                ) : (
+                    <img src={image9} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto10)}>
-                <img src={image10}></img>
+                {selectedImage === foto10 ? (
+                    <img src={foto10} className='thumbnail-selected' />
+                ) : (
+                    <img src={image10} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto11)}>
-                <img src={image11}></img>
+                {selectedImage === foto11 ? (
+                    <img src={foto11} className='thumbnail-selected' />
+                ) : (
+                    <img src={image11} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto12)}>
-                <img src={image12}></img>
+                {selectedImage === foto12 ? (
+                    <img src={foto12} className='thumbnail-selected' />
+                ) : (
+                    <img src={image12} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto13)}>
-                <img src={image13}></img>
+                {selectedImage === foto13 ? (
+                    <img src={foto13} className='thumbnail-selected' />
+                ) : (
+                    <img src={image13} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto14)}>
-                <img src={image14}></img>
+                {selectedImage === foto14 ? (
+                    <img src={foto14} className='thumbnail-selected' />
+                ) : (
+                    <img src={image14} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto15)}>
-                <img src={image15}></img>
+                {selectedImage === foto15 ? (
+                    <img src={foto15} className='thumbnail-selected' />
+                ) : (
+                    <img src={image15} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto16)}>
-                <img src={image16}></img>
+                {selectedImage === foto16 ? (
+                    <img src={foto16} className='thumbnail-selected' />
+                ) : (
+                    <img src={image16} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto17)}>
-                <img src={image17}></img>
+                {selectedImage === foto17 ? (
+                    <img src={foto17} className='thumbnail-selected' />
+                ) : (
+                    <img src={image17} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto18)}>
-                <img src={image18}></img>
+                {selectedImage === foto18 ? (
+                    <img src={foto18} className='thumbnail-selected' />
+                ) : (
+                    <img src={image18} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto19)}>
-                <img src={image19}></img>
+                {selectedImage === foto19 ? (
+                    <img src={foto19} className='thumbnail-selected' />
+                ) : (
+                    <img src={image19} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto20)}>
-                <img src={image20}></img>
+                {selectedImage === foto20 ? (
+                    <img src={foto20} className='thumbnail-selected' />
+                ) : (
+                    <img src={image20} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto21)}>
-                <img src={image21}></img>
+                {selectedImage === foto21 ? (
+                    <img src={foto21} className='thumbnail-selected' />
+                ) : (
+                    <img src={image21} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto22)}>
-                <img src={image22}></img>
+                {selectedImage === foto22 ? (
+                    <img src={foto22} className='thumbnail-selected' />
+                ) : (
+                    <img src={image22} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto23)}>
-                <img src={image23}></img>
+                {selectedImage === foto23 ? (
+                    <img src={foto23} className='thumbnail-selected' />
+                ) : (
+                    <img src={image23} className='thumbnail' />
+                )}
             </button>
             <button className="button" onClick={() => handleButtonClick(foto24)}>
-                <img src={image24}></img>
+                {selectedImage === foto24 ? (
+                    <img src={foto24} className='thumbnail-selected' />
+                ) : (
+                    <img src={image24} className='thumbnail' />
+                )}
             </button>
         </>
     );
