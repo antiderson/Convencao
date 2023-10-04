@@ -98,7 +98,7 @@ const ButtonComponent: React.FC<ButtonProps> = () => {
                     <img src={image2} className='thumbnail'></img>
                 )}
             </button>
-            <button className="button" onClick={() => handleButtonClick(foto3)}>
+            {/* <button className="button" onClick={() => handleButtonClick(foto3)}>
                 {selectedImage === foto3 ? (
                     <img src={foto3} className='thumbnail-selected' />
                 ) : (
@@ -251,7 +251,7 @@ const ButtonComponent: React.FC<ButtonProps> = () => {
                 ) : (
                     <img src={image24} className='thumbnail' />
                 )}
-            </button>
+            </button> */}
         </>
     );
 };
