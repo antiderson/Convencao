@@ -58,20 +58,19 @@ interface ButtonProps {
 }
 
 const ButtonComponent: React.FC<ButtonProps> = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState<string | null>(
-        localStorage.getItem('selectedImage') || null
-    );
-    const [thumbnail, setThumbnail] = useState<string | null>(
-        localStorage.getItem('thumbnail') || null
-    );
 
-    const handleButtonClick = (image: string) => {
+    const [images, setImages] = useState<string[]>(["oi"]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isClicked, setIsClicked] = useState<Boolean>(false);
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+    const handleButtonClick = (image: string, nameImage: string) => {
         setSelectedImage(image);
         setIsModalOpen(true);
-
-        setThumbnail(image);
-        localStorage.setItem('thumbnail', image);
+        setImages(prevImages => [...prevImages, nameImage]);
+        console.log(images.includes(nameImage))
+        console.log(images);
+        setIsClicked(true);
     };
 
     const closeModal = () => {
@@ -88,22 +87,21 @@ const ButtonComponent: React.FC<ButtonProps> = () => {
     return (
         <>
             <Modal isOpen={isModalOpen} onClose={closeModal} image={selectedImage} />
-            <button className="button" onClick={() => handleButtonClick(foto1)}>
-                {thumbnail === foto1 ? (
+            <button className="button" onClick={() => handleButtonClick(foto1, "foto1")}>
+                { isClicked === true && images.includes("foto1") ? (
                     <img src={foto1} className='thumbnail-selected' />
                 ) : (
                     <img src={image1} className='thumbnail' />
                 )}
-                {/* <img src={image1} /> */}
             </button>
-            <button className="button" onClick={() => handleButtonClick(foto2)}>
-                {thumbnail === foto2 ? (
+            <button className="button" onClick={() => handleButtonClick(foto2, "foto2")}>
+                { isClicked === true && images.includes("foto2")  ? (
                     <img src={foto2} className='thumbnail-selected' alt="thumb2"></img>
                 ) : (
                     <img src={image2} className='thumbnail'></img>
                 )}
             </button>
-            <button className="button" onClick={() => handleButtonClick(foto3)}>
+            {/* <button className="button" onClick={() => handleButtonClick(foto3)}>
                 {selectedImage === foto3 ? (
                     <img src={foto3} className='thumbnail-selected' />
                 ) : (
@@ -256,7 +254,7 @@ const ButtonComponent: React.FC<ButtonProps> = () => {
                 ) : (
                     <img src={image24} className='thumbnail' />
                 )}
-            </button>
+            </button> */}
         </>
     );
 };
