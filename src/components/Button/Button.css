@@ -1,0 +1,17 @@
+.button {
+    background-color: transparent;
+    width: 0%;
+    height: 0%;
+}
+
+.thumbnail {
+    width: 210px;
+    height: 160px;
+    /* position: fixed; */
+}
+
+.thumbnail-selected{
+    width: 210px;
+    height: 160px;
+    /* position: fixed; */
+}
